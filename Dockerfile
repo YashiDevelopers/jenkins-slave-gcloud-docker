@@ -1,4 +1,4 @@
-FROM jenkinsci/jnlp-slave:alpine
+FROM jenkinsci/jnlp-slave:2.62-alpine
 
 MAINTAINER Chris Ingrassia <chris@noneofyo.biz>
 
