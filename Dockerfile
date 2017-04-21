@@ -1,4 +1,4 @@
-FROM jenkinsci/jnlp-slave:alpine
+FROM jenkinsci/jnlp-slave:2.62-alpine
 
 MAINTAINER Chris Ingrassia <c.ingrassia@yashi.com>
 
@@ -6,7 +6,7 @@ USER root
 
 RUN apk add --no-cache docker ca-certificates wget tar python libstdc++ libc6-compat \
   && update-ca-certificates \
-  && wget -O /tmp/gcloud.tgz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-138.0.0-linux-x86_64.tar.gz \
+  && wget -q -O /tmp/gcloud.tgz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-152.0.0-linux-x86_64.tar.gz \
   && mkdir -p /opt/gcloud \
   && tar xzf /tmp/gcloud.tgz -C /opt/gcloud --strip-components=1 \
   && rm -f /tmp/gcloud.tgz \
@@ -71,7 +71,7 @@ RUN set -xe; \
 	mkdir -p /usr/src; \
 	cd /usr/src; \
 	\
-	wget -O php.tar.xz "$PHP_URL"; \
+	wget -q -O php.tar.xz "$PHP_URL"; \
 	\
 	if [ -n "$PHP_SHA256" ]; then \
 		echo "$PHP_SHA256 *php.tar.xz" | sha256sum -c -; \
@@ -81,7 +81,7 @@ RUN set -xe; \
 	fi; \
 	\
 	if [ -n "$PHP_ASC_URL" ]; then \
-		wget -O php.tar.xz.asc "$PHP_ASC_URL"; \
+		wget -q -O php.tar.xz.asc "$PHP_ASC_URL"; \
 		export GNUPGHOME="$(mktemp -d)"; \
 		for key in $GPG_KEYS; do \
 			gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
