@@ -4,7 +4,7 @@ MAINTAINER Chris Ingrassia <c.ingrassia@yashi.com>
 
 USER root
 
-RUN apk add --no-cache docker ca-certificates wget tar python libstdc++ \
+RUN apk add --no-cache docker ca-certificates wget tar python libstdc++ libc6-compat \
   && update-ca-certificates \
   && wget -O /tmp/gcloud.tgz https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-138.0.0-linux-x86_64.tar.gz \
   && mkdir -p /opt/gcloud \
