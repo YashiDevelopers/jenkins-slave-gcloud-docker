@@ -10,7 +10,8 @@ RUN apk add --no-cache docker ca-certificates wget tar python libstdc++ libc6-co
   && mkdir -p /opt/gcloud \
   && tar xzf /tmp/gcloud.tgz -C /opt/gcloud --strip-components=1 \
   && rm -f /tmp/gcloud.tgz \
-  && rm -f /var/cache/apk/*
+  && rm -f /var/cache/apk/* \
+  && npm install -g react relay graphql express es6 es7 jsx webpack babel postcss scaffolding fullstack
 
 ENV PATH=$PATH:/opt/gcloud/bin
 
